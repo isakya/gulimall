@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        # 每一个路由都有一个id，可以随意起，但不要重名
+        - id: test_route
+          uri: https://www.baidu.com
+          predicates:
+            - Query=url,baidu
+        - id: qq_route
+          # 要跳转的地址
+          uri: https://www.qq.com
+          # 跳转条件是xxx?url=qq，注意会携带xxx进行跳转，如https://www.qq.com/xxx
+          predicates:
+            - Query=url,qq
