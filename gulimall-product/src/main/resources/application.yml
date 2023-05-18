@@ -14,5 +14,11 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+      # 逻辑删除规则
+      logic-delete-value: 1
+      logic-not-delete-value: 0
 server:
   port: 10001
+logging:
+  level:
+    com.atguigu.gulimall: debug # 把这个包下的所有日志都调为debug级别
