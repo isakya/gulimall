@@ -25,4 +25,4 @@ spring:
 
 ## 前端项目，/api
 ## http://localhost:88/api/captcha.jpg  转换==> http://renren-fast:8080/api/captcha.jpg  // 错误
-## http://localhost:88/api/captcha.jpg  转换==> http://renren-fast:8080/renren-fast/captcha.jpg  // 正确
+## http://localhost:88/api/captcha.jpg  转换==> http://renren-fast:8080/renren-fast/captcha.jpg  //  正确
