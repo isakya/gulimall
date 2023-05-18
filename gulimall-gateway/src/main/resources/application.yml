@@ -13,6 +13,14 @@ spring:
           # 跳转条件是xxx?url=qq，注意会携带xxx进行跳转，如https://www.qq.com/xxx
           predicates:
             - Query=url,qq
+        - id: product_route
+          uri: lb://gulimall-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        # 精确路由匹配放到最上面，模糊路由匹配放到最后
         - id: admin_route
           # lb负载均衡
           uri: lb://renren-fast
@@ -26,3 +34,6 @@ spring:
 ## 前端项目，/api
 ## http://localhost:88/api/captcha.jpg  转换==> http://renren-fast:8080/api/captcha.jpg  // 错误
 ## http://localhost:88/api/captcha.jpg  转换==> http://renren-fast:8080/renren-fast/captcha.jpg  //  正确
+
+
+## http://localhost:88/api/product/category/list/tree ==> http://renren-fast:10000/product/category/list/tree
