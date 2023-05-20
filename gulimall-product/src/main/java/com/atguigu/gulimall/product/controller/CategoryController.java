@@ -65,7 +65,7 @@ public class CategoryController {
     }
 
     /**
-     * 修改
+     * 更新菜单排序接口
      */
     @RequestMapping("/update/sort")
     //@RequiresPermissions("product:category:update")
