@@ -20,6 +20,14 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
 
+        # 第三方服务
+        - id: third_party_route
+          uri: lb://gulimall-third-party
+          predicates:
+            - Path=/api/thirdparty/**
+          filters:
+            - RewritePath=/api/thirdparty/(?<segment>.*),/$\{segment}
+
         # 精确路由匹配放到最上面，模糊路由匹配放到最后
         - id: admin_route
           # lb负载均衡
@@ -30,6 +38,7 @@ spring:
           filters:
             # 重写规则
             - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
+
 
 ## 前端项目，/api
 ## http://localhost:88/api/captcha.jpg  转换==> http://renren-fast:8080/api/captcha.jpg  // 错误
