@@ -1,7 +1,9 @@
 package com.atguigu.gulimall.product.entity;
 
 import com.atguigu.common.valid.AddGroup;
+import com.atguigu.common.valid.ListValue;
 import com.atguigu.common.valid.UpdateGroup;
+import com.atguigu.common.valid.UpdateStatusGroup;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -50,12 +52,15 @@ public class BrandEntity implements Serializable {
 	/**
 	 * 显示状态[0-不显示；1-显示]
 	 */
+	@NotNull(groups = {AddGroup.class, UpdateStatusGroup.class})
+	@ListValue(values = {0, 1}, groups = {AddGroup.class, UpdateStatusGroup.class})
 	private Integer showStatus;
 	/**
 	 * 检索首字母
 	 */
 	@NotEmpty(groups = {UpdateGroup.class})
-	@Pattern(regexp = "/^[a-zA-z]$/", message = "检索首字母必须是一个字母", groups = {AddGroup.class, UpdateGroup.class})
+	// java正则不用双斜杠//
+	@Pattern(regexp = "^[a-zA-z]$", message = "检索首字母必须是一个字母", groups = {AddGroup.class, UpdateGroup.class})
 	private String firstLetter;
 	/**
 	 * 排序
